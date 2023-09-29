@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { CircularProgress, Skeleton } from "@mui/material";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -53,25 +54,22 @@ const average = (arr) =>
 export default function App() {
   const [movies, setMoives] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
+  const [isLoading, setIsLoading] = useState(false);
   // ----
-  const [test, setTest] = useState([]);
-  const [found, setFound] = useState([]);
 
-  const search = "interstellar";
+  // const search = "interstellar";
   async function Fetch() {
-    const res = await axios.get(
-      `http://www.omdbapi.com/?apikey=dfbee097&s=${search}`
-    );
+    try {
+      setIsLoading(true);
+      const res = await axios.get(
+        `http://www.omdbapi.com/?apikey=dfbee097&s=interstellar`
+      );
+      console.log(res.data);
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
     // console.log(res.data.Search);
-    setTest(res.data.Search);
-    setFound(
-      test.filter((item) => {
-        console.log(item.Title);
-        console.log(item.Title.includes(search));
-        return [item.Title];
-      })
-    );
-    console.log(found);
   }
   useEffect(() => {
     Fetch();
@@ -87,9 +85,7 @@ export default function App() {
       </NavBar>
       <Main>
         {" "}
-        <Box>
-          <MovieList movies={movies} />
-        </Box>
+        <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
         <Box>
           {" "}
           <WatchedSummary watched={watched} />
@@ -100,11 +96,20 @@ export default function App() {
   );
 }
 
+function Loader() {
+  return (
+    <div className="loader">
+      <CircularProgress />
+    </div>
+  );
+}
+
 function NavBar({ children, movies }) {
   return <nav className="nav-bar">{children}</nav>;
 }
 function Search() {
   const [query, setQuery] = useState("");
+
   return (
     <input
       className="search"
