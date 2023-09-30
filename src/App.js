@@ -56,26 +56,37 @@ export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [error, setError] = useState(false);
-  // ----
 
-  // const search = "interstellar";
   async function Fetch() {
+    const query = "Interstellar";
     try {
-      setIsLoading(true);
+      setIsLoading(true); // we make loading true at the begining
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=dfbee097&s=interstellar`
+        `http://www.omdbapi.com/?apikey=dfbee097&s=${query}`
       );
-      // console.log(res.data);
+
+      if (!res.ok)
+        // if !res.ok or res.status !==200 we gonna throw new error
+        throw new Error("We couldnt fetch the data, CHECK YOUR CONNECTION");
+
+      const data = await res.json();
+      console.log(data.Response);
+
+      if (data.Response === "False")
+        // if user searched for not a movie
+        throw new Error("we couldnt find ur movie");
     } catch (err) {
+      // here we set error message to error that we throwed
+
+      setErrorMessage(err.message);
     } finally {
+      setIsLoading(false); //we make loading false so data can show up after everything
     }
-    // console.log(res.data.Search);
   }
   useEffect(() => {
     Fetch();
   }, []);
-  // ------
+
   return (
     <>
       <NavBar>
@@ -87,7 +98,12 @@ export default function App() {
       <Main>
         {" "}
         <Box>
-          <MovieList movies={movies} />
+          {/*👇 if loading is true we gonna show loader component 👇*/}
+          {isLoading && <Loader />}
+          {/*👇 if loader is false and also errormessage(empty stringis falsy value) we gonna show movieList component 👇*/}
+          {!isLoading && !errorMessage && <MovieList movies={movies} />}
+          {/*👇 if we have an errorMessage we gonna show error component 👇*/}
+          {errorMessage && <ErrorMessage message={errorMessage} />}
         </Box>
         <Box>
           {" "}
@@ -106,7 +122,14 @@ function Loader() {
     </div>
   );
 }
-
+function ErrorMessage({ message }) {
+  // always set error component to ErrorMessage to avoid an issue
+  return (
+    <div className="center">
+      <Alert severity="error"> {message}</Alert>
+    </div>
+  );
+}
 function NavBar({ children, movies }) {
   return <nav className="nav-bar">{children}</nav>;
 }
@@ -233,7 +256,7 @@ function WatchedSummary({ watched }) {
 }
 function WatchedMovieList({ watched }) {
   return (
-    <ul className="list">
+    <ul className="list" key={Date.now()}>
       {watched.map((movie) => (
         <WatcheMovie movie={movie} />
       ))}
