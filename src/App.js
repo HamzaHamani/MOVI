@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { CircularProgress, Skeleton } from "@mui/material";
+import { Alert, CircularProgress, Skeleton } from "@mui/material";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -55,19 +55,20 @@ export default function App() {
   const [movies, setMoives] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState(false);
   // ----
 
   // const search = "interstellar";
   async function Fetch() {
     try {
       setIsLoading(true);
-      const res = await axios.get(
+      const res = await fetch(
         `http://www.omdbapi.com/?apikey=dfbee097&s=interstellar`
       );
-      console.log(res.data);
-    } catch (error) {
+      // console.log(res.data);
+    } catch (err) {
     } finally {
-      setIsLoading(false);
     }
     // console.log(res.data.Search);
   }
@@ -77,7 +78,7 @@ export default function App() {
   // ------
   return (
     <>
-      <NavBar m>
+      <NavBar>
         {" "}
         <Logo />
         <Search />
@@ -85,7 +86,9 @@ export default function App() {
       </NavBar>
       <Main>
         {" "}
-        <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
+        <Box>
+          <MovieList movies={movies} />
+        </Box>
         <Box>
           {" "}
           <WatchedSummary watched={watched} />
