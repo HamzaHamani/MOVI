@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Alert, CircularProgress, Skeleton } from "@mui/material";
+import { Alert, AlertTitle, CircularProgress, Skeleton } from "@mui/material";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -56,13 +56,14 @@ export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [query, setQuery] = useState("");
 
+  const tempQuery = "islam";
   async function Fetch() {
-    const query = "Interstellar";
     try {
       setIsLoading(true); // we make loading true at the begining
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=dfbee097&s=${query}`
+        `http://www.omdbapi.com/?apikey=dfbee097&s=${tempQuery}`
       );
 
       if (!res.ok)
@@ -70,7 +71,9 @@ export default function App() {
         throw new Error("We couldnt fetch the data, CHECK YOUR CONNECTION");
 
       const data = await res.json();
-      console.log(data.Response);
+
+      setMoives(data.Search);
+      console.log(data.Search);
 
       if (data.Response === "False")
         // if user searched for not a movie
@@ -92,7 +95,7 @@ export default function App() {
       <NavBar>
         {" "}
         <Logo />
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResult movies={movies} />
       </NavBar>
       <Main>
@@ -115,27 +118,10 @@ export default function App() {
   );
 }
 
-function Loader() {
-  return (
-    <div className="loader">
-      <CircularProgress />
-    </div>
-  );
-}
-function ErrorMessage({ message }) {
-  // always set error component to ErrorMessage to avoid an issue
-  return (
-    <div className="center">
-      <Alert severity="error"> {message}</Alert>
-    </div>
-  );
-}
 function NavBar({ children, movies }) {
   return <nav className="nav-bar">{children}</nav>;
 }
-function Search() {
-  const [query, setQuery] = useState("");
-
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -283,5 +269,28 @@ function WatcheMovie({ movie }) {
         </p>
       </div>
     </li>
+  );
+}
+
+/*  
+! handling errors components 
+*/
+
+function Loader() {
+  return (
+    <div className="loader">
+      <CircularProgress />
+    </div>
+  );
+}
+function ErrorMessage({ message }) {
+  // always set error component to ErrorMessage to avoid an issue
+  return (
+    <div className="center">
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        {message} <strong>check it out!</strong>
+      </Alert>
+    </div>
   );
 }
