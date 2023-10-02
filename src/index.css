@@ -22,7 +22,7 @@ html {
 }
 .box::-webkit-scrollbar,
 .list::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
   scroll-behavior: smooth;
 }
 

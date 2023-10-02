@@ -58,7 +58,7 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [query, setQuery] = useState("");
 
-  const tempQuery = "islam";
+  const tempQuery = "asdaidoahsdho";
   async function Fetch() {
     try {
       setIsLoading(true); // we make loading true at the begining
@@ -72,12 +72,11 @@ export default function App() {
 
       const data = await res.json();
 
-      setMoives(data.Search);
-      console.log(data.Search);
-
-      if (data.Response === "False")
+      if (data.Response === "False") {
         // if user searched for not a movie
         throw new Error("we couldnt find ur movie");
+      }
+      if (res.ok) setMoives(data.Search);
     } catch (err) {
       // here we set error message to error that we throwed
 
@@ -103,10 +102,10 @@ export default function App() {
         <Box>
           {/*👇 if loading is true we gonna show loader component 👇*/}
           {isLoading && <Loader />}
+          {errorMessage && <HandleError message={errorMessage} />}
           {/*👇 if loader is false and also errormessage(empty stringis falsy value) we gonna show movieList component 👇*/}
           {!isLoading && !errorMessage && <MovieList movies={movies} />}
           {/*👇 if we have an errorMessage we gonna show error component 👇*/}
-          {errorMessage && <ErrorMessage message={errorMessage} />}
         </Box>
         <Box>
           {" "}
@@ -115,6 +114,29 @@ export default function App() {
         </Box>
       </Main>
     </>
+  );
+}
+
+/*  
+! handling errors components 
+*/
+
+function Loader() {
+  return (
+    <div className="loader">
+      <CircularProgress />
+    </div>
+  );
+}
+function HandleError({ message }) {
+  // always set error component to ErrorMessage to avoid an issue
+  return (
+    <div className="center">
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        {message} <strong>check it out!</strong>
+      </Alert>
+    </div>
   );
 }
 
@@ -244,7 +266,7 @@ function WatchedMovieList({ watched }) {
   return (
     <ul className="list" key={Date.now()}>
       {watched.map((movie) => (
-        <WatcheMovie movie={movie} />
+        <WatcheMovie movie={movie} key={Date.now()} />
       ))}
     </ul>
   );
@@ -269,28 +291,5 @@ function WatcheMovie({ movie }) {
         </p>
       </div>
     </li>
-  );
-}
-
-/*  
-! handling errors components 
-*/
-
-function Loader() {
-  return (
-    <div className="loader">
-      <CircularProgress />
-    </div>
-  );
-}
-function ErrorMessage({ message }) {
-  // always set error component to ErrorMessage to avoid an issue
-  return (
-    <div className="center">
-      <Alert severity="error">
-        <AlertTitle>Error</AlertTitle>
-        {message} <strong>check it out!</strong>
-      </Alert>
-    </div>
   );
 }
