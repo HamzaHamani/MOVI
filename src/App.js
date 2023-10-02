@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Alert, AlertTitle, CircularProgress, Skeleton } from "@mui/material";
+import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -58,12 +58,12 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [query, setQuery] = useState("");
 
-  const tempQuery = "asdaidoahsdho";
   async function Fetch() {
     try {
       setIsLoading(true); // we make loading true at the begining
+      setErrorMessage(""); // we restart error to initial value
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=dfbee097&s=${tempQuery}`
+        `http://www.omdbapi.com/?apikey=dfbee097&s=${query}`
       );
 
       if (!res.ok)
@@ -76,18 +76,25 @@ export default function App() {
         // if user searched for not a movie
         throw new Error("we couldnt find ur movie");
       }
-      if (res.ok) setMoives(data.Search);
+      if (res.ok) setMoives(data.Search); // f res.ok or res.status ===200 we gotta setMovie to the data (always gotta be at the end of try block)
     } catch (err) {
       // here we set error message to error that we throwed
-
       setErrorMessage(err.message);
     } finally {
       setIsLoading(false); //we make loading false so data can show up after everything
     }
+
+    // to check if length is small we dont need to render anything that what empty return for
+    if (query.length < 3) {
+      setMoives([]); // reset movie list
+      setErrorMessage(""); //reset error
+      return; // so function wont execute
+    }
   }
+
   useEffect(() => {
     Fetch();
-  }, []);
+  }, [query]);
 
   return (
     <>
