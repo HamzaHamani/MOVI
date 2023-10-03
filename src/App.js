@@ -184,8 +184,8 @@ function Search({ query, setQuery }) {
 function Logo() {
   return (
     <div className="logo">
-      <span role="img">🍿</span>
-      <h1>usePopcorn</h1>
+      <span role="img">📽️</span>
+      <h1>Movi</h1>
     </div>
   );
 }
@@ -217,18 +217,38 @@ function Box({ movies, children }) {
 
 function MovieDtails({ selectedId, onhandleRemove }) {
   const [movie, setMovie] = useState({});
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function getMovieDetails() {
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=dfbee097&i=${selectedId}`
-      );
-      const data = await res.json();
-      setMovie(data);
+      try {
+        setLoading(true);
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=dfbee097&i=${selectedId}`
+        );
+        const data = await res.json();
+        setMovie(data);
+      } catch (error) {
+      } finally {
+        setLoading(false);
+      }
     }
+
     getMovieDetails();
   }, [selectedId]);
-  return <MovieDetailsData movie={movie} onhandleRemove={onhandleRemove} />;
+  return loading ? (
+    <div className="center">
+      <CircularProgress />
+    </div>
+  ) : (
+    <MovieDetailsData
+      movie={movie}
+      onhandleRemove={onhandleRemove}
+      key={movie.imdbID}
+      loading={loading}
+    />
+  );
 }
+
 function MovieDetailsData({ movie, onhandleRemove }) {
   return (
     <div className="details">
@@ -246,7 +266,7 @@ function MovieDetailsData({ movie, onhandleRemove }) {
           <p>{movie.Genre}</p>
           <p>
             <span>⭐</span>
-            {movie.ImdbRating} IMDB rating
+            {movie.imdbRating} IMDB rating
           </p>
         </div>
       </header>

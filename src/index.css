@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
 :root {
   --color-primary: #6741d9;
   --color-primary-light: #7950f2;
@@ -46,6 +48,14 @@ body {
   background-color: var(--color-primary);
   border-radius: 0.9rem;
 }
+.nav-bar .logo span {
+  margin-top: -9px;
+}
+.nav-bar .logo h1 {
+  font-family: "Lato", sans-serif;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
 
 .main {
   margin-top: 2.4rem;
@@ -60,7 +70,7 @@ body {
   max-width: 42rem;
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
-  overflow: auto;
+  overflow: scroll;
   position: relative;
 }
 
@@ -345,6 +355,14 @@ body {
   justify-content: center;
 }
 
+.center {
+  display: flex;
+  /* background-color: red; */
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  /* justify-items: center; */
+}
 /*
 SPACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 40 / 48 / 64 / 80 / 96 / 128
