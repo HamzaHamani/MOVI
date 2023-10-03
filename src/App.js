@@ -143,29 +143,6 @@ export default function App() {
   );
 }
 
-/*  
-! handling errors components 
-*/
-
-function Loader() {
-  return (
-    <div className="loader">
-      <CircularProgress />
-    </div>
-  );
-}
-function HandleError({ message }) {
-  // always set error component to ErrorMessage to avoid an issue
-  return (
-    <div className="center">
-      <Alert severity="error">
-        <AlertTitle>Error</AlertTitle>
-        {message} <strong>check it out!</strong>
-      </Alert>
-    </div>
-  );
-}
-
 function NavBar({ children, movies }) {
   return <nav className="nav-bar">{children}</nav>;
 }
@@ -364,5 +341,28 @@ function WatcheMovie({ movie }) {
         </p>
       </div>
     </li>
+  );
+}
+
+/*  
+! handling errors components 
+*/
+
+function Loader() {
+  return (
+    <div className="loader">
+      <CircularProgress />
+    </div>
+  );
+}
+function HandleError({ message }) {
+  // always set error component to ErrorMessage to avoid an issue
+  return (
+    <div className="center">
+      <Alert severity="error" style={{ fontSize: "1.5rem" }}>
+        <AlertTitle>Error</AlertTitle>
+        {message} <strong>check it out!</strong>
+      </Alert>
+    </div>
   );
 }
