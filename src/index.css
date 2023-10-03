@@ -67,8 +67,13 @@ body {
 }
 
 .box {
-  width: 42rem;
-  max-width: 42rem;
+  /* width: 42rem; */
+  /* max-width: 0rem; */
+  width: 80rem;
+  /* max-width: 80rem; */
+
+  /* width: 130rem; */
+  /* max-width: 100%; */
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
   overflow: scroll;
@@ -166,32 +171,43 @@ body {
 .list li {
   position: relative;
   display: grid;
-  grid-template-columns: 4rem 1fr;
+  grid-template-columns: 0.3fr 1fr;
   grid-template-rows: auto auto;
-  column-gap: 2.4rem;
+  /* column-gap: rem; */
   font-size: 1.6rem;
   align-items: center;
 
-  padding: 1.6rem 3.2rem;
+  /* padding: 1.6rem 3.2rem; */
   border-bottom: 1px solid var(--color-background-100);
 }
 
 .list.list-movies li {
   cursor: pointer;
   transition: all 0.3s;
+  min-height: 10rem;
+
+  max-height: 19rem;
+
+  overflow: hidden;
 }
 
 .list.list-movies li:hover {
   background-color: var(--color-background-100);
 }
-
+.list li > div {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 3.2rem;
+  justify-content: start;
+  align-items: flex-start;
+}
 .list img {
-  width: 100%;
+  width: 90%;
   grid-row: 1 / -1;
 }
 
 .list h3 {
-  font-size: 1.8rem;
+  font-size: 2.8rem;
 }
 
 .list div {
@@ -204,11 +220,12 @@ body {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  font-size: 2rem;
 }
 
 .btn-delete {
   position: absolute;
-  right: 2.4rem;
+  right: 1.8rem;
 
   height: 1.8rem;
   aspect-ratio: 1;
@@ -280,21 +297,35 @@ body {
 
 .details-overview {
   width: 100%;
-  padding: 2.4rem 3rem;
+
   background-color: var(--color-background-100);
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 2rem;
+}
+
+.details-overview div {
+  padding: 2.4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .details-overview h2 {
-  font-size: 2.4rem;
+  font-size: 4.5rem;
   margin-bottom: 0.4rem;
   line-height: 1.1;
+  background-color: var(--color-background-500);
+  width: 100%;
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .details-overview p {
   display: flex;
+  font-size: 1.8rem;
   align-items: center;
   gap: 0.8rem;
 }
@@ -373,3 +404,14 @@ SPACING SYSTEM (px)
 FONT SIZE SYSTEM (px)
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 /52 / 62 / 74 / 86 / 98
 */
+
+.movie-more-details {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.movie-more-details p {
+  font-size: 1.7rem;
+}

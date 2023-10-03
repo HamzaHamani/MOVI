@@ -237,23 +237,27 @@ function MovieDetailsData({ movie, onhandleRemove }) {
         <img src={movie.Poster} alt={`Poster of ${movie.Movie}`} />
         <div className="details-overview">
           <h2>{movie.Title}</h2>
-          <p>
-            {movie.Released} &bull; {movie.Runtime}{" "}
-          </p>
-          <p>{movie.Genre}</p>
-          <p>
-            <span>⭐</span>
-            {movie.imdbRating} IMDB rating
-          </p>
+          <div>
+            <p>
+              {movie.Released} &bull; {movie.Runtime}{" "}
+            </p>
+            <p>{movie.Genre}</p>
+            <p>
+              <span>⭐</span>
+              {movie.imdbRating} IMDB rating
+            </p>
+          </div>
         </div>
       </header>
       <section>
         <StarRating maxRatings={10} size={25} />
-        <p>
-          <em>{movie.Plot}</em>
-        </p>
-        <p>Starring {movie.Actors}</p>
-        <p>directed by {movie.Director}</p>
+        <div className="movie-more-details">
+          <p>
+            <em>{movie.Plot}</em>
+          </p>
+          <p>Starring {movie.Actors}</p>
+          <p>directed by {movie.Director}</p>
+        </div>
       </section>
     </div>
   );
@@ -272,13 +276,17 @@ function MovieList({ movies, onhandleClick, onhandleRemove }) {
 function Movie({ movie, onhandleClick }) {
   return (
     <li onClick={() => onhandleClick(movie.imdbID)}>
+      {console.log(movie)}
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
       <div>
-        <p>
-          <span>🗓</span>
-          <span>{movie.Year}</span>
-        </p>
+        <h3>{movie.Title}</h3>
+        <p>{movie.imdbRating}</p>
+        <div>
+          <p>
+            <span>🗓</span>
+            <span>{movie.Year}</span>
+          </p>
+        </div>
       </div>
     </li>
   );
