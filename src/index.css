@@ -31,8 +31,8 @@ html {
 }
 
 body {
-  font-family: sans-serif !important;
-
+  font-family: "Public Sans", sans-serif;
+  font-weight: normal;
   color: var(--color-text);
   background-color: var(--color-background-900);
   padding: 1rem;
@@ -64,6 +64,7 @@ body {
   display: flex;
   gap: 2.4rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .box {
@@ -201,6 +202,10 @@ body {
   justify-content: start;
   align-items: flex-start;
 }
+.list li div h3,
+.details-overview h2 {
+  font-weight: 800;
+}
 .list img {
   width: 90%;
   grid-row: 1 / -1;
@@ -312,7 +317,8 @@ body {
 }
 
 .details-overview h2 {
-  font-size: 4.5rem;
+  padding: 1rem;
+  font-size: 4rem;
   margin-bottom: 0.4rem;
   line-height: 1.1;
   background-color: var(--color-background-500);

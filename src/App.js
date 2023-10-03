@@ -280,7 +280,7 @@ function Movie({ movie, onhandleClick }) {
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <div>
         <h3>{movie.Title}</h3>
-        <p>{movie.imdbRating}</p>
+        <p>Type: {movie.Type}</p>
         <div>
           <p>
             <span>🗓</span>
