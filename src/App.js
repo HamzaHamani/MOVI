@@ -65,7 +65,7 @@ export default function App() {
       setIsLoading(true); //? we make loading true at the begining
       setErrorMessage(""); //? we restart error to initial value after loadijng
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=dfbee097&s=${query}`
+        `https://www.omdbapi.com/?apikey=dfbee097&s=${query}`
       );
 
       if (!res.ok)
@@ -200,7 +200,7 @@ function MovieDtails({ selectedId, onhandleRemove }) {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=dfbee097&i=${selectedId}`
+          `https://www.omdbapi.com/?apikey=dfbee097&i=${selectedId}`
         );
         const data = await res.json();
         setMovie(data);
