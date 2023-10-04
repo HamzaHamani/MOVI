@@ -162,7 +162,7 @@ function Logo() {
   return (
     <div className="logo">
       <span role="img">📽️</span>
-      <h1>Movi</h1>
+      <h1>Movia</h1>
     </div>
   );
 }
