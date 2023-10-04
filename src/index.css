@@ -64,6 +64,7 @@ body {
   display: flex;
   gap: 2.4rem;
   justify-content: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 .nav-bar .logo span img {
@@ -73,6 +74,14 @@ body {
   /* background-color: red !important; */
   width: 10%;
   margin-top: 10px;
+}
+/* body {
+  overflow: hidden;
+} */
+
+.list.list-movies {
+  height: 85vh;
+  overflow: scroll;
 }
 .box {
   /* width: 42rem; */

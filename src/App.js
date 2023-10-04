@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import StarRating from "./StartRating";
 import lo from "./lo.png";
+//!! flex start fo fix box 2 highet get longer with box1
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -268,7 +269,6 @@ function MovieDetailsData({ movie, onhandleRemove }) {
 }
 
 function MovieList({ movies, onhandleClick, onhandleRemove }) {
-  // const [movies, setMovies] = useState(tempMovieData);
   return (
     <ul className="list list-movies">
       {movies?.map((movie) => (
