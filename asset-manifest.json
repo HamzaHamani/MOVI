@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MOVI/static/css/main.4871de51.css",
+    "main.js": "/MOVI/static/js/main.790157c3.js",
+    "index.html": "/MOVI/index.html",
+    "main.4871de51.css.map": "/MOVI/static/css/main.4871de51.css.map",
+    "main.790157c3.js.map": "/MOVI/static/js/main.790157c3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4871de51.css",
+    "static/js/main.790157c3.js"
+  ]
+}
