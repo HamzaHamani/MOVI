@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/MOVI/static/css/main.4871de51.css",
-    "main.js": "/MOVI/static/js/main.833db86a.js",
+    "main.css": "/MOVI/static/css/main.21fee3a8.css",
+    "main.js": "/MOVI/static/js/main.9b2b17ab.js",
     "index.html": "/MOVI/index.html",
-    "main.4871de51.css.map": "/MOVI/static/css/main.4871de51.css.map",
-    "main.833db86a.js.map": "/MOVI/static/js/main.833db86a.js.map"
+    "main.21fee3a8.css.map": "/MOVI/static/css/main.21fee3a8.css.map",
+    "main.9b2b17ab.js.map": "/MOVI/static/js/main.9b2b17ab.js.map"
   },
   "entrypoints": [
-    "static/css/main.4871de51.css",
-    "static/js/main.833db86a.js"
+    "static/css/main.21fee3a8.css",
+    "static/js/main.9b2b17ab.js"
   ]
 }
