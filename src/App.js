@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import StarRating from "./StartRating";
+import lo from "./lo.png";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -161,8 +162,11 @@ function Search({ query, setQuery }) {
 function Logo() {
   return (
     <div className="logo">
-      <span role="img">📽️</span>
-      <h1>Movia</h1>
+      <span role="img">
+        {" "}
+        <img src={lo} />{" "}
+      </span>
+      <h1>Movi</h1>
     </div>
   );
 }

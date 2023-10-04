@@ -66,7 +66,14 @@ body {
   justify-content: center;
   flex-wrap: wrap;
 }
-
+.nav-bar .logo span img {
+  width: 70%;
+}
+.nav-bar .logo span {
+  /* background-color: red !important; */
+  width: 10%;
+  margin-top: 10px;
+}
 .box {
   /* width: 42rem; */
   /* max-width: 0rem; */
@@ -101,7 +108,7 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0rem;
 }
 
 .logo span {
