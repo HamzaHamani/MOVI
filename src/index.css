@@ -71,26 +71,18 @@ body {
   width: 70%;
 }
 .nav-bar .logo span {
-  /* background-color: red !important; */
   width: 10%;
   margin-top: 10px;
 }
-/* body {
-  overflow: hidden;
-} */
 
-.list.list-movies {
-  height: 85vh;
-  overflow: scroll;
-}
 .box {
   /* width: 42rem; */
   /* max-width: 0rem; */
-  width: 80rem;
-  /* max-width: 80rem; */
+  /* width: 80rem; */
 
-  /* width: 130rem; */
-  /* max-width: 100%; */
+  width: 80rem;
+  height: 85vh;
+
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
   overflow: scroll;
@@ -216,6 +208,7 @@ body {
   flex-direction: column;
   padding: 1.6rem 3.2rem;
   justify-content: start;
+
   align-items: flex-start;
 }
 .list li div h3,
@@ -427,6 +420,8 @@ FONT SIZE SYSTEM (px)
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 /52 / 62 / 74 / 86 / 98
 */
 
+/* ! star styling */
+
 .movie-more-details {
   /* background-color: red; */
   display: flex;
@@ -436,4 +431,23 @@ FONT SIZE SYSTEM (px)
 }
 .movie-more-details p {
   font-size: 1.7rem;
+}
+.containerSmallStar {
+  display: flex;
+  gap: 1rem;
+}
+
+.containerStyle {
+  display: flex;
+
+  gap: 16px;
+  flex-direction: column;
+  background-color: var(--color-background-100);
+  padding: 1rem 3rem;
+  align-items: center;
+}
+
+.starContainerStyle {
+  display: flex;
+  gap: 4px;
 }

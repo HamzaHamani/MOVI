@@ -1,20 +1,20 @@
 import { useState } from "react";
 
-const containerStyle = {
-  display: "flex",
-  alightItems: "center",
-
-  gap: "16px",
-};
-
 const starContainerStyle = {
   display: "flex",
   gap: "4px",
 };
 
-function StarRating({ maxRatings = 3, color = "#fcc419", size = 48 }) {
+function StarRating({
+  maxRatings = 3,
+  color = "#fcc419",
+  size = 48,
+  movie,
+  makeRatingStar,
+}) {
   const [rating, setRating] = useState(0);
   const [tempRating, setTempRating] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const textStyle = {
     //   lineHeight: "1",
@@ -23,34 +23,39 @@ function StarRating({ maxRatings = 3, color = "#fcc419", size = 48 }) {
     color,
     fontSize: `${size / 1.5}px`,
   };
+  makeRatingStar(rating);
 
   return (
-    <div style={containerStyle}>
-      <div style={starContainerStyle}>
-        {Array.from({ length: maxRatings }, (holdre, i) => (
-          <Star
-            key={i + 1}
-            onRate={() => {
-              setRating(i + 1);
-              console.log(rating);
-            }}
-            onHover={() => {
-              // setRating();
-              setTempRating(i + 1);
-            }}
-            onLeave={() => {
-              setTempRating(0);
+    <div className="containerStyle">
+      <div className="containerSmallStar">
+        <div className="starContainerStyle">
+          {Array.from({ length: maxRatings }, (holdre, i) => (
+            <Star
+              key={i + 1}
+              onRate={() => {
+                setRating(i + 1);
+                setOpen(true);
+                // console.log(rating);
+              }}
+              onHover={() => {
+                // setRating();
+                setTempRating(i + 1);
+              }}
+              onLeave={() => {
+                setTempRating(0);
 
-              // setRating();
-            }}
-            rating={rating}
-            full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
-            color={color}
-            size={size}
-          />
-        ))}
+                // setRating();
+              }}
+              rating={rating}
+              full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
+              color={color}
+              size={size}
+            />
+          ))}
+        </div>
+
+        <p style={textStyle}>{tempRating || rating || ""}</p>
       </div>
-      <p style={textStyle}>{tempRating || rating || ""}</p>
     </div>
   );
 }

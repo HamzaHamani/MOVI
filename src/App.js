@@ -4,6 +4,7 @@ import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import StarRating from "./StartRating";
 import lo from "./lo.png";
 //!! flex start fo fix box 2 highet get longer with box1
+//! add , button add to watched movie functionality
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -55,8 +56,8 @@ const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 export default function App() {
-  const [movies, setMoives] = useState(tempMovieData);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [movies, setMoives] = useState([]);
+  const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [query, setQuery] = useState("");
@@ -106,6 +107,12 @@ export default function App() {
   function onhandleRemove() {
     setSelectedId(null);
   }
+  function handleAddWatched(movie) {
+    setWatched((watched) => [...watched, movie]);
+  }
+  function hadleDeleteWatched(Title) {
+    setWatched((m) => m.filter((movie) => movie.Title !== Title));
+  }
   return (
     <>
       <NavBar>
@@ -129,14 +136,18 @@ export default function App() {
         <Box>
           {selectedId ? (
             <MovieDtails
+              onAddWatched={handleAddWatched}
               selectedId={selectedId}
               onhandleRemove={onhandleRemove}
+              watched={watched}
             />
           ) : (
             <>
-              {" "}
               <WatchedSummary watched={watched} />
-              <WatchedMovieList watched={watched} />
+              <WatchedMovieList
+                watched={watched}
+                onDeleteWatch={hadleDeleteWatched}
+              />
             </>
           )}
         </Box>
@@ -165,7 +176,7 @@ function Logo() {
     <div className="logo">
       <span role="img">
         {" "}
-        <img src={lo} />{" "}
+        <img src={lo} alt={"logo img"} />{" "}
       </span>
       <h1>Movi</h1>
     </div>
@@ -185,19 +196,10 @@ function Main({ children }) {
 }
 
 function Box({ movies, children }) {
-  const [isOpen, setIsOpen] = useState(true);
-  return (
-    <div className="box">
-      <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
-        {isOpen ? "–" : "+"}
-      </button>
-
-      {isOpen && children}
-    </div>
-  );
+  return <div className="box">{children}</div>;
 }
 
-function MovieDtails({ selectedId, onhandleRemove }) {
+function MovieDtails({ selectedId, onhandleRemove, onAddWatched, watched }) {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -223,7 +225,10 @@ function MovieDtails({ selectedId, onhandleRemove }) {
     </div>
   ) : (
     <MovieDetailsData
+      watched={watched}
+      selectedId={selectedId}
       movie={movie}
+      onAddWatched={onAddWatched}
       onhandleRemove={onhandleRemove}
       key={movie.imdbID}
       loading={loading}
@@ -231,7 +236,37 @@ function MovieDtails({ selectedId, onhandleRemove }) {
   );
 }
 
-function MovieDetailsData({ movie, onhandleRemove }) {
+function MovieDetailsData({
+  movie,
+  onhandleRemove,
+  onAddWatched,
+  selectedId,
+  watched,
+}) {
+  const [rating, setUserRating] = useState("");
+  const isWatched = watched.map((movies) => movies.Title).includes(movie.Title);
+
+  function makeRatingStar(r) {
+    setUserRating(r);
+  }
+
+  function handleAdd() {
+    if (rating <= 0) {
+      return;
+    }
+    const newWatchedMovie = {
+      imdbId: selectedId,
+      imdbRating: Number(movie.imdbRating),
+      Title: movie.Title,
+      Year: movie.Year,
+      Poster: movie.Poster,
+      runtime: Number(movie.Runtime.split(" ").at(0)),
+      userRating: rating,
+    };
+
+    onAddWatched(newWatchedMovie);
+    onhandleRemove();
+  }
   return (
     <div className="details">
       <header>
@@ -255,7 +290,26 @@ function MovieDetailsData({ movie, onhandleRemove }) {
         </div>
       </header>
       <section>
-        <StarRating maxRatings={10} size={25} />
+        <div className="rating">
+          {!isWatched ? (
+            <>
+              <StarRating
+                maxRatings={10}
+                size={25}
+                makeRatingStar={makeRatingStar}
+              />
+              {rating != 0 ? (
+                <button className="btn-add" onClick={handleAdd}>
+                  Add to list
+                </button>
+              ) : (
+                ""
+              )}
+            </>
+          ) : (
+            <p>u rated this movie already</p>
+          )}
+        </div>
         <div className="movie-more-details">
           <p>
             <em>{movie.Plot}</em>
@@ -280,7 +334,6 @@ function MovieList({ movies, onhandleClick, onhandleRemove }) {
 function Movie({ movie, onhandleClick }) {
   return (
     <li onClick={() => onhandleClick(movie.imdbID)}>
-      {console.log(movie)}
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <div>
         <h3>{movie.Title}</h3>
@@ -324,16 +377,20 @@ function WatchedSummary({ watched }) {
     </div>
   );
 }
-function WatchedMovieList({ watched }) {
+function WatchedMovieList({ watched, onDeleteWatch }) {
   return (
     <ul className="list" key={Date.now() + 10}>
       {watched.map((movie) => (
-        <WatcheMovie movie={movie} key={movie.imdbID} />
+        <WatcheMovie
+          movie={movie}
+          key={movie.imdbID}
+          onDeleteWatch={onDeleteWatch}
+        />
       ))}
     </ul>
   );
 }
-function WatcheMovie({ movie }) {
+function WatcheMovie({ movie, onDeleteWatch }) {
   return (
     <li key={movie.imdbID}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
@@ -341,16 +398,22 @@ function WatcheMovie({ movie }) {
       <div>
         <p>
           <span>⭐️</span>
-          <span>{movie.imdbRating}</span>
+          <span>{movie.imdbRating.toFixed(2)}</span>
         </p>
         <p>
           <span>🌟</span>
-          <span>{movie.userRating}</span>
+          <span>{movie.userRating.toFixed(2)}</span>
         </p>
         <p>
           <span>⏳</span>
           <span>{movie.runtime} min</span>
         </p>
+        <button
+          className="btn-delete"
+          onClick={() => onDeleteWatch(movie.Title)}
+        >
+          X
+        </button>
       </div>
     </li>
   );
