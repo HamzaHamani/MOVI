@@ -57,11 +57,24 @@ const average = (arr) =>
 
 export default function App() {
   const [movies, setMoives] = useState([]);
-  const [watched, setWatched] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+
+  //!local stroage
+  //taking values from local storage and adding it to StoredValue
+  const storedValue = JSON.parse(localStorage.getItem("watched")) || [];
+  // we add storedvalue fo localStorage to watched to display it when we just render to website
+  const [watched, setWatched] = useState(storedValue); // state when we store data that we recieve from api or user and the one we display
+
+  useEffect(() => {
+    // getting data from watched State Array and storing it in localStorage
+    const stored = localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]);
+
+  //-----------
 
   useEffect(() => {
     const controller = new AbortController(); //abort for ignoring racing condition for fetching
