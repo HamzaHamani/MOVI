@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import StarRating from "./StartRating";
-import lo from "./lo.png";
+import logoS from "./logoS.png";
 //!! flex start fo fix box 2 highet get longer with box1
 //! add , button add to watched movie functionality
 const tempMovieData = [
@@ -70,9 +70,9 @@ export default function App() {
   const [watched, setWatched] = useState(storedValue); // state when we store data that we recieve from api or user and the one we display
 
   useEffect(() => {
-    // getting data from watched State Array and storing it in localStorage
-    const stored = localStorage.setItem("watched", JSON.stringify(watched));
-  }, [watched]);
+    // getting data from watched StateArray and storing it in localStorage
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]); //when ever watched change uef gonna reRender so each time Watched tzadt liha chi haja ra 3tzad ta flocal storafe
 
   //-----------
 
@@ -196,7 +196,7 @@ function Logo() {
     <div className="logo">
       <span role="img">
         {" "}
-        <img src={lo} alt={"logo img"} />{" "}
+        <img src={logoS} alt={"logo img"} />{" "}
       </span>
       <h1>Movi</h1>
     </div>
