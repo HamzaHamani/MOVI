@@ -76,6 +76,9 @@ export default function App() {
 
   //-----------
 
+  const watchedLength = watched.length;
+  const moviesLength = movies.length;
+
   useEffect(() => {
     const controller = new AbortController(); //abort for ignoring racing condition for fetching
     async function Fetch() {
@@ -133,6 +136,7 @@ export default function App() {
   function hadleDeleteWatched(Title) {
     setWatched((m) => m.filter((movie) => movie.Title !== Title));
   }
+  console.log(watched);
   return (
     <>
       <NavBar>
@@ -149,7 +153,11 @@ export default function App() {
           {errorMessage && <HandleError message={errorMessage} />}
           {/*👇 if loader is false and also errormessage(empty stringis falsy value) we gonna show movieList component 👇*/}
           {!isLoading && !errorMessage && (
-            <MovieList movies={movies} onhandleClick={onhandleClick} />
+            <MovieList
+              movies={movies}
+              onhandleClick={onhandleClick}
+              moviesLength={moviesLength}
+            />
           )}
           {/*👇 if we have an errorMessage we gonna show error component 👇*/}
         </Box>
@@ -167,6 +175,7 @@ export default function App() {
               <WatchedMovieList
                 watched={watched}
                 onDeleteWatch={hadleDeleteWatched}
+                watchedLength={watchedLength}
               />
             </>
           )}
@@ -342,13 +351,23 @@ function MovieDetailsData({
   );
 }
 
-function MovieList({ movies, onhandleClick, onhandleRemove }) {
+function MovieList({ movies, onhandleClick, onhandleRemove, moviesLength }) {
   return (
-    <ul className="list list-movies">
-      {movies?.map((movie) => (
-        <Movie movie={movie} key={movie.imdbID} onhandleClick={onhandleClick} />
-      ))}
-    </ul>
+    <>
+      <ul className="list list-movies">
+        {movies?.map((movie) => (
+          <Movie
+            movie={movie}
+            key={movie.imdbID}
+            onhandleClick={onhandleClick}
+          />
+        ))}
+      </ul>
+      <div
+        className="scroll-down-dude2 "
+        style={{ opacity: moviesLength > 4 ? 1 : 0 }}
+      ></div>
+    </>
   );
 }
 function Movie({ movie, onhandleClick }) {
@@ -397,45 +416,53 @@ function WatchedSummary({ watched }) {
     </div>
   );
 }
-function WatchedMovieList({ watched, onDeleteWatch }) {
+function WatchedMovieList({ watched, onDeleteWatch, watchedLength }) {
   return (
-    <ul className="list" key={Date.now() + 10}>
-      {watched.map((movie) => (
-        <WatcheMovie
-          movie={movie}
-          key={movie.imdbID}
-          onDeleteWatch={onDeleteWatch}
-        />
-      ))}
-    </ul>
+    <>
+      <ul className="list list-watched" key={Date.now() + 10}>
+        {watched.map((movie) => (
+          <WatcheMovie
+            movie={movie}
+            key={movie.imdbID}
+            onDeleteWatch={onDeleteWatch}
+          />
+        ))}
+      </ul>
+      <div
+        className="scroll-down-dude"
+        style={{ opacity: watchedLength > 3 ? 1 : 0 }}
+      ></div>
+    </>
   );
 }
 function WatcheMovie({ movie, onDeleteWatch }) {
   return (
-    <li key={movie.imdbID}>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
-      <div>
-        <p>
-          <span>⭐️</span>
-          <span>{movie.imdbRating.toFixed(2)}</span>
-        </p>
-        <p>
-          <span>🌟</span>
-          <span>{movie.userRating.toFixed(2)}</span>
-        </p>
-        <p>
-          <span>⏳</span>
-          <span>{movie.runtime} min</span>
-        </p>
-        <button
-          className="btn-delete"
-          onClick={() => onDeleteWatch(movie.Title)}
-        >
-          X
-        </button>
-      </div>
-    </li>
+    <>
+      <li key={movie.imdbID}>
+        <img src={movie.Poster} alt={`${movie.Title} poster`} />
+        <h3>{movie.Title}</h3>
+        <div>
+          <p>
+            <span>⭐️</span>
+            <span>{movie.imdbRating}</span>
+          </p>
+          <p>
+            <span>🌟</span>
+            <span>{movie.userRating}</span>
+          </p>
+          <p>
+            <span>⏳</span>
+            <span>{movie.runtime} min</span>
+          </p>
+          <button
+            className="btn-delete"
+            onClick={() => onDeleteWatch(movie.Title)}
+          >
+            X
+          </button>
+        </div>
+      </li>
+    </>
   );
 }
 

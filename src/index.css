@@ -85,11 +85,17 @@ body {
 
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
-  overflow: scroll;
+
   position: relative;
   scrollbar-color: red yellow !important;
 }
-
+.box:first-child {
+  overflow: scroll;
+}
+.list-watched {
+  /* background-color: red; */
+  overflow: scroll;
+}
 .loader {
   text-align: center;
   text-transform: uppercase;
@@ -450,4 +456,117 @@ FONT SIZE SYSTEM (px)
 .starContainerStyle {
   display: flex;
   gap: 4px;
+}
+
+/* ----------------- */
+
+.list-watched {
+  position: relative;
+}
+.scroll-down-dude {
+  position: absolute;
+  bottom: 5rem;
+  right: 38rem;
+  border-radius: 100px;
+
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+
+.scroll-down-dude:before,
+.scroll-down-dude:after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+
+  border-bottom: 4px solid white;
+  border-right: 4px solid white;
+}
+
+.scroll-down-dude:before {
+  animation: down-arrow-before 2.6s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+.scroll-down-dude:after {
+  animation: down-arrow-after 2.6s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+@keyframes down-arrow-before {
+  50% {
+    transform: rotate(45deg) translate(70%, 70%);
+  }
+  100% {
+    transform: rotate(45deg) translate(70%, 70%);
+  }
+}
+
+@keyframes down-arrow-after {
+  50% {
+    transform: rotate(45deg) translate(110%, 110%);
+    opacity: 0;
+  }
+  51% {
+    transform: rotate(45deg) translate(-130%, -130%);
+  }
+  100% {
+    transform: rotate(45deg) translate(-70%, -70%);
+    opacity: 1;
+  }
+}
+
+/* 222 */
+
+.scroll-down-dude2 {
+  position: absolute;
+  bottom: 5rem;
+  right: 38rem;
+  border-radius: 100px;
+
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+
+.scroll-down-dude2:before,
+.scroll-down-dude2:after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+
+  border-bottom: 4px solid white;
+  border-right: 4px solid white;
+}
+
+.scroll-down-dude2:before {
+  animation: down-arrow-before2 2.6s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+.scroll-down-dude2:after {
+  animation: down-arrow-after2 2.6s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+@keyframes down-arrow-before2 {
+  50% {
+    transform: rotate(45deg) translate(70%, 70%);
+  }
+  100% {
+    transform: rotate(45deg) translate(70%, 70%);
+  }
+}
+
+@keyframes down-arrow-after2 {
+  50% {
+    transform: rotate(45deg) translate(110%, 110%);
+    opacity: 0;
+  }
+  51% {
+    transform: rotate(45deg) translate(-130%, -130%);
+  }
+  100% {
+    transform: rotate(45deg) translate(-70%, -70%);
+    opacity: 1;
+  }
 }
