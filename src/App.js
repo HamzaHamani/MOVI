@@ -94,13 +94,13 @@ export default function App() {
       } finally {
         setIsLoading(false); //!we make loading false so data can show up after everything
       }
-
-      //? to check if length is small we dont need to render anything that what empty return for
-      if (query.length < 3) {
-        setMoives([]); // reset movie list
-        setErrorMessage(""); //reset error if input smaller than 3
-        return; // so function wont execute
-      }
+    }
+    //? to check if length is small we dont need to render anything that what empty return for
+    // should ne fo9 lasync function fch ghadi nkaliwha to stop calliing Fetch() with empty return if condition true
+    if (query.length < 3) {
+      setMoives([]); // reset movie list
+      setErrorMessage(""); //reset error if input smaller than 3
+      return; // so function wont execute
     }
     Fetch();
     return function () {
