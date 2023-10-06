@@ -518,10 +518,14 @@ FONT SIZE SYSTEM (px)
 
 /* 222 */
 
+.box:first-child {
+  position: relative;
+}
 .scroll-down-dude2 {
-  position: absolute;
+  position: fixed;
   bottom: 5rem;
-  right: 38rem;
+  /* right: 38rem; */
+  left: 47rem;
   border-radius: 100px;
 
   opacity: 0;
