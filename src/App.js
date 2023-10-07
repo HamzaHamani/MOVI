@@ -203,10 +203,7 @@ function Search({ query, setQuery }) {
 function Logo() {
   return (
     <div className="logo">
-      <span role="img">
-        {" "}
-        <img src={logoS} alt={"logo img"} />{" "}
-      </span>
+      <span role="img"> {/* <img src={logoS} alt={"logo img"} />{" "} */}</span>
       <h1>Movi</h1>
     </div>
   );
@@ -365,7 +362,7 @@ function MovieList({ movies, onhandleClick, onhandleRemove, moviesLength }) {
       </ul>
       <div
         className="scroll-down-dude2 "
-        style={{ opacity: moviesLength > 4 ? 1 : 0 }}
+        style={{ opacity: moviesLength > 0 ? 0 : 0 }}
       ></div>
     </>
   );
@@ -430,7 +427,7 @@ function WatchedMovieList({ watched, onDeleteWatch, watchedLength }) {
       </ul>
       <div
         className="scroll-down-dude"
-        style={{ opacity: watchedLength > 3 ? 1 : 0 }}
+        style={{ opacity: watchedLength > 0 ? 0 : 0 }}
       ></div>
     </>
   );

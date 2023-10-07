@@ -522,7 +522,7 @@ FONT SIZE SYSTEM (px)
   position: relative;
 }
 .scroll-down-dude2 {
-  position: fixed;
+  position: absolute;
   bottom: 5rem;
   /* right: 38rem; */
   left: 47rem;
@@ -572,5 +572,129 @@ FONT SIZE SYSTEM (px)
   100% {
     transform: rotate(45deg) translate(-70%, -70%);
     opacity: 1;
+  }
+}
+
+/* --------------------------- repsonsive */
+
+@media (max-width: 1641px) {
+  body {
+    /* font-size: 50; */
+    /* background-color: red; */
+  }
+  html {
+    font-size: 55%;
+  }
+  .box {
+    /* width: 70rem; */
+  }
+}
+@media (max-width: 1446px) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 1314px) {
+  html {
+    font-size: 40%;
+  }
+}
+@media (max-width: 1050px) {
+  html {
+    font-size: 35%;
+  }
+  .search {
+    width: 50rem;
+    height: 6rem;
+    font-size: 2.8rem;
+  }
+  .nav-bar {
+    height: 9rem;
+  }
+  .nav-bar .logo h1 {
+    font-size: 3.8rem;
+  }
+  .num-results {
+    font-size: 2.6rem;
+  }
+  .scroll-down-dude2:before,
+  .scroll-down-dude2:after,
+  .scroll-down-dude:before,
+  .scroll-down-dude:after {
+    width: 8px;
+    height: 8px;
+  }
+  .box {
+    height: 88vh;
+  }
+}
+@media (max-width: 920px) {
+  html {
+    font-size: 30%;
+  }
+}
+@media (max-width: 790px) {
+  html {
+    font-size: 29%;
+  }
+  .search {
+    min-width: 50rem;
+    max-width: 70rem;
+    /* width: 60rem; */
+  }
+  .main {
+    flex-direction: row;
+  }
+  .box {
+    width: 80vw;
+    height: 45vh;
+  }
+  .list.list-movies li {
+    min-height: 30rem;
+
+    /* max-height: 30rem; */
+  }
+  .scroll-down-dude2 {
+    left: 320px;
+  }
+  .scroll-down-dude {
+    left: 320px;
+  }
+}
+@media (max-width: 430px) {
+  html {
+    font-size: 25%;
+  }
+  .list.list-movies li {
+    min-height: 25rem;
+  }
+  .list.list-movies li div h3 {
+    font-size: 4rem;
+  }
+  .list p {
+    font-size: 3rem;
+  }
+  .list.list-movies p {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 381px) {
+  .logo h1 {
+    font-size: 3.3rem !important;
+  }
+  .num-results {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 320px) {
+  .nav-bar {
+    width: 90rem;
+  }
+  .main {
+    width: 90rem;
+  }
+  .box {
+    width: 80rem;
+    height: 52vh;
   }
 }
