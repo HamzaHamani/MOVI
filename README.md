@@ -7,7 +7,8 @@ This project is a dynamic and interactive movie catalog website built using Reac
 
 ![8ade6db4-c646-4e92-b4e6-36741eb568e6](https://github.com/HamzaHamani/MOVI/assets/102440542/ee1d3f8a-61f2-475e-93d9-04b306238865)
 
-![db9cac8f-71c2-4554-ad57-ed934d7c6e7f](https://github.com/HamzaHamani/MOVI/assets/102440542/c9308d67-85ea-482b-b860-2471be860633)
+![db9cac8f-71c2-4554-ad57-ed934d7c6e7f](https://github.com/HamzaHamani/MOVI/assets/102440542/0025b134-53e6-4f1f-9a97-28a9ba4c8452)
+
 
 ## Additional Informations
 
