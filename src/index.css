@@ -604,7 +604,7 @@ FONT SIZE SYSTEM (px)
     font-size: 35%;
   }
   .search {
-    width: 50rem;
+    /* width: 50rem; */
     height: 6rem;
     font-size: 2.8rem;
   }
@@ -638,8 +638,8 @@ FONT SIZE SYSTEM (px)
     font-size: 29%;
   }
   .search {
-    min-width: 50rem;
-    max-width: 70rem;
+    min-width: 40rem;
+    /* max-width: 70rem; */
     /* width: 60rem; */
   }
   .main {
@@ -661,7 +661,16 @@ FONT SIZE SYSTEM (px)
     left: 320px;
   }
 }
+@media (max-width: 456px) {
+  .num-results {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 430px) {
+  .nav-bar {
+    min-width: 10px;
+  }
   html {
     font-size: 25%;
   }
@@ -679,16 +688,19 @@ FONT SIZE SYSTEM (px)
   }
 }
 @media (max-width: 381px) {
+  .nav-bar {
+    min-width: 30rem;
+  }
   .logo h1 {
-    font-size: 3.3rem !important;
+    font-size: 3.3rem;
   }
   .num-results {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }
 @media (max-width: 320px) {
   .nav-bar {
-    width: 90rem;
+    width: 30rem;
   }
   .main {
     width: 90rem;
