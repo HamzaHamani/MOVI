@@ -703,9 +703,6 @@ FONT SIZE SYSTEM (px)
   .num-results {
     font-size: 1.8rem;
   }
-  html body .starContainerStyle span {
-    /* width: 10px !important; */
-  }
 }
 @media (max-width: 320px) {
   .nav-bar {
