@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/MOVI/static/css/main.28313c98.css",
-    "main.js": "/MOVI/static/js/main.9b2b17ab.js",
+    "main.css": "/MOVI/static/css/main.e0080021.css",
+    "main.js": "/MOVI/static/js/main.40fbe938.js",
+    "static/media/logoS.png": "/MOVI/static/media/logoS.b85bea6d29ae583eed7b.png",
     "index.html": "/MOVI/index.html",
-    "main.28313c98.css.map": "/MOVI/static/css/main.28313c98.css.map",
-    "main.9b2b17ab.js.map": "/MOVI/static/js/main.9b2b17ab.js.map"
+    "main.e0080021.css.map": "/MOVI/static/css/main.e0080021.css.map",
+    "main.40fbe938.js.map": "/MOVI/static/js/main.40fbe938.js.map"
   },
   "entrypoints": [
-    "static/css/main.28313c98.css",
-    "static/js/main.9b2b17ab.js"
+    "static/css/main.e0080021.css",
+    "static/js/main.40fbe938.js"
   ]
 }

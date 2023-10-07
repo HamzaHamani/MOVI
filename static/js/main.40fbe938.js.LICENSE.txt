@@ -49,6 +49,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-//! if res.ok or res.status ===200 we gotta setMovie to the data (always gotta be at the end of try block)
+//! (always gotta be at the end of try block)
 
 //!we make loading false so data can show up after everything
