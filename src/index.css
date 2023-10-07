@@ -709,7 +709,7 @@ FONT SIZE SYSTEM (px)
 }
 @media (max-width: 320px) {
   .nav-bar {
-    width: 30rem;
+    width: 89rem;
   }
   .main {
     width: 90rem;
