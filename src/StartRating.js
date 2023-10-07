@@ -63,17 +63,17 @@ function StarRating({
 export default StarRating;
 
 function Star({ rating, onRate, full, onHover, onLeave, size, color }) {
-  const starStyle = {
-    width: `${size}px`,
-    height: `${size}px`,
-    display: "block",
-    cursor: "pointer",
-  };
+  // const starStyle = {
+  //   width: `25px`,
+  //   height: `25px`,
+  //   display: "block",
+  //   cursor: "pointer",
+  // };
 
   return (
     <span
       role={"button"}
-      style={starStyle}
+      className="starStyle"
       onClick={onRate}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}

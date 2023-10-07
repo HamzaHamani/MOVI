@@ -686,6 +686,12 @@ FONT SIZE SYSTEM (px)
   .list.list-movies p {
     font-size: 2.5rem;
   }
+  .starStyle {
+    /* background-color: red; */
+    width: 15px !important;
+    height: 15px !important;
+    align-self: center;
+  }
 }
 @media (max-width: 381px) {
   .nav-bar {
@@ -696,6 +702,9 @@ FONT SIZE SYSTEM (px)
   }
   .num-results {
     font-size: 1.8rem;
+  }
+  html body .starContainerStyle span {
+    /* width: 10px !important; */
   }
 }
 @media (max-width: 320px) {
@@ -709,4 +718,10 @@ FONT SIZE SYSTEM (px)
     width: 80rem;
     height: 52vh;
   }
+}
+.starStyle {
+  width: 25px;
+  height: 25px;
+  display: block;
+  cursor: pointer;
 }
