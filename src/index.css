@@ -87,7 +87,6 @@ body {
   border-radius: 0.9rem;
 
   position: relative;
-  scrollbar-color: red yellow !important;
 }
 .box:first-child {
   overflow: scroll;
