@@ -9,6 +9,11 @@ This project is a dynamic and interactive movie catalog website built using Reac
 
 ![db9cac8f-71c2-4554-ad57-ed934d7c6e7f](https://github.com/HamzaHamani/MOVI/assets/102440542/0025b134-53e6-4f1f-9a97-28a9ba4c8452)
 
+## Things Im gonna add Next
+<ul>
+      <li>Framer Motion For Advanced Animations</li>
+      <li>Display Movies When You Enter the Website</li>
+</ul>
 
 ## Additional Informations
 
